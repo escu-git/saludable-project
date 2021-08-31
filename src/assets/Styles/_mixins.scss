@@ -1,0 +1,14 @@
+//RESPONSIVE MEDIAQUERIES:
+@mixin mediaQuery-phone{
+    @media screen and (max-width:480px){
+        @content;
+    }
+}
+
+
+
+@mixin mediaQuery-desktop{
+    @media screen and (min-width: 481px){
+        @content;
+    }
+}

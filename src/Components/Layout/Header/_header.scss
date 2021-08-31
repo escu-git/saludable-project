@@ -1,0 +1,8 @@
+
+@include mediaQuery-phone{
+    .headerContainer{
+        display:flex;
+        flex-direction: row;
+        background-color: $mainColor;
+    }
+}
