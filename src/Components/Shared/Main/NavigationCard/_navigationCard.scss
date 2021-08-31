@@ -1,0 +1,23 @@
+.navCard{
+    display:flex;
+}
+
+@include mediaQuery-phone{
+    .navCard{
+        justify-content:center;
+        align-items:center;
+        border:1px solid black;
+        width:60%;
+        height:40%;
+    }
+}
+
+@include mediaQuery-desktop{
+    .navCard{
+        justify-content:center;
+        align-items:center;
+        border:1px solid black;
+        width:5em;
+        height:10em;
+    }   
+}

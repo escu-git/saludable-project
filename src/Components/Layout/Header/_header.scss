@@ -1,8 +1,35 @@
-
+.headerContainer{
+    display:flex;
+    flex-direction: row;
+    background-color: $mainColor;
+    h1{
+        font-size:2rem;
+        font-family: $brandFont;
+        color:rgb(255, 255, 255);
+    }
+}
 @include mediaQuery-phone{
     .headerContainer{
-        display:flex;
-        flex-direction: row;
+        align-items:center;
+        justify-content: space-evenly;
         background-color: $mainColor;
+        margin-bottom:50px;
+        img{
+            width:60px;
+            height: 60px;
+            border-radius:100px;
+        }
+    }
+}
+
+@include mediaQuery-desktop{
+    .headerContainer{
+        align-items:center;
+        justify-content: space-evenly;
+        img{
+            width:60px;
+            height: 60px;
+            border-radius:100px;
+        }
     }
 }

@@ -1,10 +1,17 @@
-import React from 'react'
+import React,{useState} from 'react'
+import { useHistory } from 'react-router';
+import '../../../../assets/Styles/styles.css';
 
-const NavigationCard = () => {
+const NavigationCard = ({cardName}) => {
+const history = useHistory();
+
+    const clickHandler = ()=> {
+        history.push('/register-meal')
+    }
+
     return (
-        <div className='navigationCard'>
-            <img src=''/>
-            <span></span>
+        <div className='navCard'>
+            <span className='navCardTitle' onClick={()=>clickHandler()}>{cardName}</span>
         </div>
     )
 }

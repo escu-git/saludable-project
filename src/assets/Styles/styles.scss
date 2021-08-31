@@ -2,4 +2,7 @@
 @import './_mixins';
 
 @import '../../app';
-@import '../../Components/Header/header';
+@import '../../Components/Layout//Header/header';
+@import '../../Components/Pages/Main/main';
+@import '../../Components/Pages/Login/login';
+@import '../../Components/Shared/Main/NavigationCard/navigationCard';

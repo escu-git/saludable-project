@@ -1,0 +1,19 @@
+
+.mainContainer{
+    display:flex;
+
+}
+@include mediaQuery-phone{
+    .mainContainer{
+        flex-direction:column;
+        justify-content: space-evenly;
+        align-items: center;
+        gap:100px;
+        height:70vh;
+        
+    }
+}
+
+@include mediaQuery-desktop{
+    flex-direction:row;
+}
