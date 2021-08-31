@@ -1,0 +1,16 @@
+.footerContainer{
+    display:flex;
+    height:10vh;
+    background-color: lightgray;
+}
+@include mediaQuery-phone{
+    .footerContainer{
+        flex-direction:row;
+        justify-content: center;
+        align-items:center;
+    }
+}
+
+@include mediaQuery-desktop{
+
+}

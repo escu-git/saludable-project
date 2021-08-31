@@ -1,5 +1,7 @@
 .navCard{
     display:flex;
+    cursor:pointer;
+
 }
 
 @include mediaQuery-phone{

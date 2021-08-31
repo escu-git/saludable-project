@@ -1,0 +1,30 @@
+
+.drinkCard{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+@include mediaQuery-phone{
+    .drinkCard{
+        
+        .drinkName{
+            font-size:2em;
+        }
+        .drinkImage{
+            width:80%;
+        }
+    }
+}
+
+@include mediaQuery-desktop{
+    .drinkCard{
+        
+        .drinkName{
+            font-size:2em;
+        }
+        .drinkImage{
+            width:80%;
+        }
+    }
+}

@@ -10,8 +10,8 @@ const history = useHistory();
     }
 
     return (
-        <div className='navCard'>
-            <span className='navCardTitle' onClick={()=>clickHandler()}>{cardName}</span>
+        <div className='navCard' onClick={()=>clickHandler()}>
+            <span className='navCardTitle'>{cardName}</span>
         </div>
     )
 }

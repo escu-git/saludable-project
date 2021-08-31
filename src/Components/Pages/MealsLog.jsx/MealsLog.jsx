@@ -1,9 +1,11 @@
 import React from 'react'
 
-export const FormCard = () => {
+const MealsLog = () => {
     return (
         <div>
             
         </div>
     )
 }
+
+export default MealsLog

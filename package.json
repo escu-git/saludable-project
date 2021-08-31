@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -11,6 +12,7 @@
     "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3",
     "sass": "^1.38.2",
+    "social-media-icons-react": "^1.1.7",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

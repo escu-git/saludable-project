@@ -1,0 +1,21 @@
+
+.formCardContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:80vh;
+    border:1px solid black;
+}
+@include mediaQuery-phone{
+    .formCardContainer{
+        .formCard{
+            width:60%;
+            height:70%;
+            border:2px solid black;
+            background-color: lightseagreen;
+        }
+    }
+}
+
+@include mediaQuery-desktop{
+}
