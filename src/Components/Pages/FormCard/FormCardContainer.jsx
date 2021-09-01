@@ -1,33 +1,49 @@
 import React, {useState, useEffect} from 'react'
 import FormCard from './FormCard';
-import FormSteps from '../../Shared/FormCard/FormSteps';
 import { useMealLogger } from '../../../Contexts/mealLogContext';
+import Welcome from '../../Shared/FormCard/Welcome';
+import MealType from '../../Shared/FormCard/MealType';
+import EatenFood from '../../Shared/FormCard/EatenFood';
+import Dessert from '../../Shared/FormCard/Dessert';
+import TemptedFood from '../../Shared/FormCard/TemptedFood';
+import StillHungry from '../../Shared/FormCard/StillHungry';
+import GoodJob from '../../Shared/FormCard/GoodJob';
 
 const FormCardContainer = () => {
-    const useLogger = useMealLogger();
-    const[step, setStep]=useState(6)
+    const useMealLog = useMealLogger(null);
     const[customTag, setCustomTag]=useState(null);
     const[mealType, setMealType]=useState(null);
-    
+
+    const clickNextHandler = ()=>{
+        useMealLog.setStep(useMealLog.step+1)
+    }
+    const clickPrevHandler = ()=>{
+        useMealLog.setStep(useMealLog.step-1)
+    }
+
+    const selectedMeal = (x) =>{
+        setMealType(x)
+    }
+
     useEffect(async()=>{
-        switch(step){
+        switch(useMealLog.step){
             case 0:
-                setCustomTag(FormSteps.Welcome00)
+                setCustomTag(<Welcome/>)
                 break
             case 1:
-                setCustomTag(FormSteps.MealType01)
+                setCustomTag(<MealType/>)
                 break
             case 2:
-                setCustomTag(FormSteps.EatenFood02)
+                setCustomTag(<EatenFood/>)
                 break
             case 3:
-                setCustomTag(FormSteps.Dessert03)
+                setCustomTag(<Dessert/>)
                 break
             case 4:
-                setCustomTag(FormSteps.TemptedFood04)
+                setCustomTag(<TemptedFood/>)
                 break
             case 5:
-                setCustomTag(FormSteps.StillHungry05)
+                setCustomTag(<StillHungry/>)
                 break
             case 6:
                 fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
@@ -43,14 +59,14 @@ const FormCardContainer = () => {
                         drinkName:res.drinks[0].strDrink,
                         ingredients: list
                     }
-                    setCustomTag(FormSteps.GoodJob06(drink))
+                    setCustomTag(<GoodJob drink={drink}/>)
                 })
         }
-    },[step])
+    },[useMealLog.step])
 
     return (
         <div className='formCardContainer'>
-            <FormCard>
+            <FormCard next={clickNextHandler} back={clickPrevHandler}>
                 {customTag}
             </FormCard>
         </div>

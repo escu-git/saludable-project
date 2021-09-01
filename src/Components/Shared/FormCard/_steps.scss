@@ -5,6 +5,10 @@
     justify-content: center;
     align-items: center;
 }
+.radioInput{
+    display:flex;
+    flex-direction: column;
+}
 @include mediaQuery-phone{
     .drinkCard{
         

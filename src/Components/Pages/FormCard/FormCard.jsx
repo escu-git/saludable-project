@@ -7,6 +7,8 @@ const FormCard = (props) => {
             <Fragment>
                 {props.children}
             </Fragment>
+        <button id='backBtn' onClick={()=>{props.back()}}>X</button>
+        <button id='nextBtn' onClick={()=>{props.next()}}>✔</button>
         </div>
     )
 }
