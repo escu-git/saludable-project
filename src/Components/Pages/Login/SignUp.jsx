@@ -16,7 +16,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useAuth } from '../../../Contexts/AuthContext';
-import { Select } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -47,13 +46,17 @@ const useStyles = makeStyles((theme) => ({
 
     const handleSignUp = useCallback(async event =>{
       event.preventDefault();
-      const {firstName, lastName, email, phone,  password} = event.target.elements;
+      const {username, address, firstName, lastName, treatment,personId, genre, email, phone,  password} = event.target.elements;
       const newUser = {
+        username:username,
         name: firstName.value,
         surname:lastName.value,
-
+        address:address,
+        genre:genre,
+        treatmentType:treatment,
         email: email.value,
         phone:phone.value,
+        personId:personId
       }
       
       try{
@@ -152,19 +155,19 @@ const useStyles = makeStyles((theme) => ({
                 <input
                     type='radio'
                     name='genre'
-                    id='male'
+                    id='genre'
                 />
                 <label for='female'>Female:</label>
                 <input
                     type='radio'
                     name='genre'
-                    id='female'
+                    id='genre'
                 />
                 <label for='other'>Other:</label>
                 <input
                     type='radio'
                     name='genre'
-                    id='other'
+                    id='genre'
                 />
               </Grid>
               <Grid item xs={12}>

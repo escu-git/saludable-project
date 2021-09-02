@@ -10,27 +10,27 @@ import GoodJob from '../../Shared/FormCard/GoodJob';
 import firebase from 'firebase/app';
 import { getFirestore } from '../../../firebase';
 
+const INITIAL_STATE = {
+    user:{
+        name:null,
+        personId:12345,
+        surname:null,
+        username:null
+    },
+    mealType: 'breakfast',
+    primaryFood:'Tostadas',
+    secondaryFood:'Queso',
+    beverage:'café',
+    isDessert:false,
+    dessert:null,
+    temptation:false,
+    temptationFood:null,
+    isSatiated:true,
+    date:null
+}
 const FormCardContainer = () => {
     const[step, setStep]=useState(0);
     const[customTag, setCustomTag]=useState(null)
-    const INITIAL_STATE = {
-        user:{
-            name:null,
-            personId:12345,
-            surname:null,
-            username:null
-        },
-        mealType: 'breakfast',
-        primaryFood:'Tostadas',
-        secondaryFood:'Queso',
-        beverage:'café',
-        isDessert:false,
-        dessert:null,
-        temptation:false,
-        temptationFood:null,
-        isSatiated:true,
-        date:null
-    }
     const[newMeal, setNewMeal]=useState(INITIAL_STATE);
     const db = getFirestore();
     const mealsCollection = db.collection('Meals');
@@ -43,38 +43,34 @@ const FormCardContainer = () => {
             console.log(err)
         })
     }
-    const checkStateIsOk= (stateToCheck) =>{
-        if(stateToCheck != null || undefined){
-            setStep(step+1)
-        }
+
+    const createNewMeal = () =>{
 
     }
-
-    const modifyState = (stateToChange, selection) =>{
-        stateToChange(selection)
+    const checkAndContinue = (checkValue) =>{
+        if(checkValue == null){
+            console.log('Please, choose option to continue.')
+            return
+        }else{
+            setStep(step+1)
+        }
     }
 
     useEffect(async()=>{
         switch(step){
             case 0:
-                setCustomTag(<Welcome fn={registerNewMeal}/>)
+                setCustomTag(<Welcome fn={checkAndContinue}/>)
                 break
             case 1:
-                setCustomTag(<MealType/>)
+                setCustomTag(<MealType fn={checkAndContinue}/>)
                 break
             case 2:
-                setCustomTag(<EatenFood/>)
-                break
-            case 3:
-                setCustomTag(<Dessert/>)
-                break
-            case 4:
                 setCustomTag(<TemptedFood/>)
                 break
-            case 5:
+            case 3:
                 setCustomTag(<StillHungry/>)
                 break
-            case 6:
+            case 4:
                 fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
                 .then(res=>res.json())
                 .then(res=>{
@@ -89,6 +85,7 @@ const FormCardContainer = () => {
                     }
                     setCustomTag(<GoodJob drink={drink}/>)
                 })
+                break
         }
     },[step])
 

@@ -5,8 +5,8 @@ import '../../../assets/Styles/styles.css';
 const Main = () => {
     return (
         <div className='mainContainer'>
-           <NavigationCard cardName='Register new meal'/>
-           <NavigationCard cardName='Meal history'/>
+           <NavigationCard cardName='Register new meal' route='/register-meal'/>
+           <NavigationCard cardName='Meal history' route='/meal-history'/>
         </div>
     )
 }

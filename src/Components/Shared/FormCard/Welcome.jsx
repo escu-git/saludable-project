@@ -3,9 +3,8 @@ import React from 'react'
 const Welcome = ({fn}) => {
     return (
         <div>
-            WELCOME!
-
-            <button onClick={()=>fn()}></button>
+            <h2>WELCOME!</h2>
+            <button onClick={()=>fn(true)}>CONTINUE</button>
         </div>
     )
 }

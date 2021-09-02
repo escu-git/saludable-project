@@ -4,7 +4,7 @@ const Dessert = () => {
     return (
         <div>
             <form>
-                <label for='eatDessert'></label>
+                <label for='eatDessert'>DESSERT?</label>
                 <input type='radius' id='eatDessert'/>
             </form>
         </div>
