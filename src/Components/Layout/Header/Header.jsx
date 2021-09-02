@@ -4,15 +4,21 @@ import logo from '../../../assets/Images/Saludable.jpeg';
 import '../../../assets/Styles/styles.css'
 
 const Header = () => {
+
     const history = useHistory();
-    const goHome = () =>{
-        history.push('/')
+
+    const redirectTo = (route) =>{
+        history.push(route)
     }
+
+
+
     return (
         <div className='headerContainer'>
-            <img id='headerLogo' src={logo} alt='Saludable Logo' onClick={()=>{goHome()}}/>
-            <h1 onClick={()=>{goHome()}}>Saludable</h1>
-            <button>Login</button>
+            <img id='headerLogo' src={logo} alt='Saludable Logo' onClick={()=>{redirectTo('/')}}/>
+            <h1 onClick={()=>{redirectTo('/')}}>Saludable</h1>
+            <button onClick={()=>redirectTo('/signin')}>Login</button>
+            <button onClick={()=>redirectTo('/signup')}>Signup</button>
         </div>
     )
 }

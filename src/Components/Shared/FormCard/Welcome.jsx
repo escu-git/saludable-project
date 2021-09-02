@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Welcome = () => {
+const Welcome = ({fn}) => {
     return (
         <div>
             WELCOME!
+
+            <button onClick={()=>fn()}></button>
         </div>
     )
 }

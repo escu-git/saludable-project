@@ -7,17 +7,22 @@ import '../src/assets/Styles/styles.css'
 import FormCardContainer from './Components/Pages/FormCard/FormCardContainer';
 import {MealLoggerProvider} from './Contexts/mealLogContext';
 import MealsLog from './Components/Pages/MealsLog.jsx/MealsLog';
-
+import { AuthProvider } from './Contexts/AuthContext';
+import SignUp from './Components/Pages/Login/SignUp';
 function App() {
   return (
     <div className="App">
+    <AuthProvider>
     <MealLoggerProvider>
         <Layout>
         <Switch>
           <Route exact path='/'>
             <Main/>
           </Route>
-          <Route exact path='/login'>
+          <Route exact path='/signup'>
+            <SignUp/>
+          </Route>
+          <Route exact path='/signin'>
             <Login/>
           </Route>
           <Route exact path='/register-meal'>
@@ -29,6 +34,7 @@ function App() {
         </Switch>
         </Layout>
     </MealLoggerProvider>
+    </AuthProvider>
     </div>
   );
 }

@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
 import FormCard from './FormCard';
-import { useMealLogger } from '../../../Contexts/mealLogContext';
 import Welcome from '../../Shared/FormCard/Welcome';
 import MealType from '../../Shared/FormCard/MealType';
 import EatenFood from '../../Shared/FormCard/EatenFood';
@@ -8,27 +7,57 @@ import Dessert from '../../Shared/FormCard/Dessert';
 import TemptedFood from '../../Shared/FormCard/TemptedFood';
 import StillHungry from '../../Shared/FormCard/StillHungry';
 import GoodJob from '../../Shared/FormCard/GoodJob';
+import firebase from 'firebase/app';
+import { getFirestore } from '../../../firebase';
 
 const FormCardContainer = () => {
-    const useMealLog = useMealLogger(null);
-    const[customTag, setCustomTag]=useState(null);
-    const[mealType, setMealType]=useState(null);
-
-    const clickNextHandler = ()=>{
-        useMealLog.setStep(useMealLog.step+1)
+    const[step, setStep]=useState(0);
+    const[customTag, setCustomTag]=useState(null)
+    const INITIAL_STATE = {
+        user:{
+            name:null,
+            personId:12345,
+            surname:null,
+            username:null
+        },
+        mealType: 'breakfast',
+        primaryFood:'Tostadas',
+        secondaryFood:'Queso',
+        beverage:'café',
+        isDessert:false,
+        dessert:null,
+        temptation:false,
+        temptationFood:null,
+        isSatiated:true,
+        date:null
     }
-    const clickPrevHandler = ()=>{
-        useMealLog.setStep(useMealLog.step-1)
+    const[newMeal, setNewMeal]=useState(INITIAL_STATE);
+    const db = getFirestore();
+    const mealsCollection = db.collection('Meals');
+
+
+    const registerNewMeal = ()=>{
+        mealsCollection.add(newMeal).then(res=>{
+            console.log(res);
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+    const checkStateIsOk= (stateToCheck) =>{
+        if(stateToCheck != null || undefined){
+            setStep(step+1)
+        }
+
     }
 
-    const selectedMeal = (x) =>{
-        setMealType(x)
+    const modifyState = (stateToChange, selection) =>{
+        stateToChange(selection)
     }
 
     useEffect(async()=>{
-        switch(useMealLog.step){
+        switch(step){
             case 0:
-                setCustomTag(<Welcome/>)
+                setCustomTag(<Welcome fn={registerNewMeal}/>)
                 break
             case 1:
                 setCustomTag(<MealType/>)
@@ -49,7 +78,6 @@ const FormCardContainer = () => {
                 fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
                 .then(res=>res.json())
                 .then(res=>{
-
                     let list = Object.entries(res.drinks[0])
                     .filter(([x])=>x.startsWith('strIngredient'))
                     .map(([,v])=>v)
@@ -62,11 +90,11 @@ const FormCardContainer = () => {
                     setCustomTag(<GoodJob drink={drink}/>)
                 })
         }
-    },[useMealLog.step])
+    },[step])
 
     return (
         <div className='formCardContainer'>
-            <FormCard next={clickNextHandler} back={clickPrevHandler}>
+            <FormCard>
                 {customTag}
             </FormCard>
         </div>
